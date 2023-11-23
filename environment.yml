@@ -1,0 +1,20 @@
+name: vis_analytics
+channels:
+  - defaults
+dependencies:
+  - altair
+  - arviz
+  - bokeh
+  - datapane
+  - folium
+  - matplotlib
+  - nbformat
+  - numpy
+  - pandas
+  - plotly
+  - plotnine
+  - python=3.11
+  - scikit-learn
+  - seaborn
+  - streamlit
+prefix: /Users/alejandro/miniconda3/envs/vis_analytics
