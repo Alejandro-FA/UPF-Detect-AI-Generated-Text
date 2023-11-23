@@ -17,4 +17,4 @@ dependencies:
   - scikit-learn
   - seaborn
   - streamlit
-prefix: /Users/alejandro/miniconda3/envs/vis_analytics
+  
