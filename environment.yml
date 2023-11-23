@@ -17,4 +17,5 @@ dependencies:
   - scikit-learn
   - seaborn
   - streamlit
-  
+  - lightgbm
+  - shap
