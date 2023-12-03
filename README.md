@@ -27,3 +27,11 @@ The delivery of the project will include:
 ## Visualization method
 
 We will build a Streamlit webapp to present the methodologies used, the analysis of the data, the Machine Learning model and an interpretation of the results (Explainable AI). We will design the webapp with the goal of using storytelling techniques for the presentation.
+
+## Useful documentation for the project
+
+- https://huggingface.co/docs/transformers/notebooks#documentation-notebooks
+
+- [SHAP text examples](https://shap.readthedocs.io/en/latest/text_examples.html)
+
+- [AI generated essay detection example](https://www.kaggle.com/code/dima806/ai-generated-essay-detection-distilbert)
