@@ -8,6 +8,7 @@ To **replicate the development environment** simply run the following command (y
 conda env create --name vis_analytics --file environment.yml
 ```
 
+> If yor system does not support CUDA, you should first remove the `pytorch-cuda` requirement from the `.yml` file, otherwise the environment creation will fail.
 
 
 ## Project description and expected benefits
