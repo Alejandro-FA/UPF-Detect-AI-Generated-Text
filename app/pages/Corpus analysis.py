@@ -17,7 +17,11 @@ def load_data():
 
     return df, df_without_outliers
 
-
+def print_description(toggled_description, nt_description, is_toggled):
+    if is_toggled:
+        st.write(toggled_description)
+    else:
+        st.write(nt_description)
 
 if __name__ == '__main__':
 
@@ -38,30 +42,61 @@ if __name__ == '__main__':
     colors = sns.color_palette('pastel')[0:2]
     plt.pie(data, labels = ["Human", "AI"], colors = colors, autopct='%.0f%%')
     st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
+    st.divider()
 
     st.subheader("Numbers of words per essay")
+    tab1, tab2 = st.tabs(["Distribution", "Boxplots"])
     fig = plt.figure()
     sns.histplot(data=df_plot, x="word_count", kde=True, hue="label")
-    st.pyplot(fig)
+    with tab1: 
+        st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
     fig = plt.figure()
-    sns.boxplot(data=df_plot, x="word_count", hue="label")
-    st.pyplot(fig)
-
+    sns.boxplot(data=df_plot, y="word_count", hue="label")
+    with tab2:
+        st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
     st.divider()
-    st.subheader("Numbers of characters per word")
 
+    st.subheader("Numbers of characters per word")
+    tab1, tab2 = st.tabs(["Distribution", "Boxplots"])
     fig = plt.figure()
     if not is_toggled:
         bins = 100
     else:
         bins = "auto"
     sns.histplot(data=df_plot, x="avg_word_len", kde=True, hue="label", bins=bins)
-    st.pyplot(fig)
+    with tab1:
+        st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
     fig = plt.figure()
-    sns.boxplot(data=df_plot, x="avg_word_len", hue="label")
-    st.pyplot(fig)
+    sns.boxplot(data=df_plot, y="avg_word_len", hue="label")
+    with tab2:
+        st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
     st.divider()
     st.subheader("Word length vs word count")
@@ -69,20 +104,29 @@ if __name__ == '__main__':
     fig = plt.figure()
     sns.scatterplot(data=df_plot, x="word_count", y="avg_word_len", hue="label")
     st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
     st.divider()
     st.subheader("Most frequent words")
-    print("Loading text")
     text = ""
     for idx, row in df_plot.iterrows():
         text += f" {row['text']}"
-    print("text loaded")
     fig = plt.figure()
     wordcloud = WordCloud(background_color="white").generate(text)
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.show()
+
     st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
     nlp = spacy.load("en_core_web_sm")
     results = nlp(text[0:1000000])
@@ -93,6 +137,11 @@ if __name__ == '__main__':
     fig = plt.figure()
     sns.barplot(x=y,y=x, hue=x)
     st.pyplot(fig)
+    print_description(
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        "As it can be observed, the proportion of human written essays is slightly higher than the AI written ones.", 
+        is_toggled
+    )
 
 
     
