@@ -126,3 +126,7 @@ widgetsnbextension==4.0.9
 xarray==2023.10.1
 xarray-einstats==0.6.0
 zipp==3.17.0
+torch
+transformers
+streamlit_shap
+datasets
