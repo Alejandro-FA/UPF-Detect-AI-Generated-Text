@@ -44,3 +44,9 @@ We will build a Streamlit webapp to present the methodologies used, the analysis
 - [SHAP text examples](https://shap.readthedocs.io/en/latest/text_examples.html)
 
 - [AI generated essay detection example](https://www.kaggle.com/code/dima806/ai-generated-essay-detection-distilbert)
+
+- [Datasets used in papers](https://github.com/NLP2CT/LLM-generated-Text-Detection#datasets)
+
+- [Validation dataset used](https://huggingface.co/datasets/Hello-SimpleAI/HC3)
+
+- [Similar model](https://huggingface.co/spaces/Hello-SimpleAI/chatgpt-detector-qa)
