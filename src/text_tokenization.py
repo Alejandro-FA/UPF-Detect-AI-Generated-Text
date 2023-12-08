@@ -40,17 +40,27 @@ if __name__ == '__main__':
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
     # %% Create pandas dataframe from CSV file
-    df = balance(pd.read_csv("data/train_essays.csv"))
-    assert(df[df["generated"]==0].count().generated == df[df["generated"]==1].count().generated)
+    # df = balance(pd.read_csv("data/train_essays.csv"))
+    # assert(df[df["generated"]==0].count().generated == df[df["generated"]==1].count().generated)
 
     # %% Create dataset from dataframe and separate into train-test split
-    X = df['text'].values
-    y = df['generated'].values
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+    # X = df['text'].values
+    # y = df['generated'].values
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # my_datasets = datasets.DatasetDict({
+    #     "train": to_dataset(X_train, y_train),
+    #     "test": to_dataset(X_test, y_test)
+    # })
+    df_train = pd.read_csv('data/archive/final_train.csv')
+    df_train.info()
+
+    df_test = pd.read_csv('data/archive/final_test.csv')
+    df_test.info()
 
     my_datasets = datasets.DatasetDict({
-        "train": to_dataset(X_train, y_train),
-        "test": to_dataset(X_test, y_test)
+        "train": datasets.Dataset.from_pandas(df_train),
+        "test": datasets.Dataset.from_pandas(df_test)
     })
 
     # %% Tokenize dataset
@@ -61,4 +71,4 @@ if __name__ == '__main__':
     for dataset in tokenized_datasets:
         print_stats(dataset, tokenized_datasets[dataset])
 
-    tokenized_datasets.save_to_disk("data/tokenized_datasets/balanced")
+    tokenized_datasets.save_to_disk("data/tokenized_datasets/new")

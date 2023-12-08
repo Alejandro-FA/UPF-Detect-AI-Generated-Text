@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # %% Training
     print("CUDA available:", torch.cuda.is_available())
 
-    tokenized_datasets = datasets.load_from_disk("data/tokenized_datasets/balanced")
+    tokenized_datasets = datasets.load_from_disk("data/tokenized_datasets/new")
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
@@ -43,10 +43,11 @@ if __name__ == '__main__':
         learning_rate=2e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=2,
+        num_train_epochs=5,
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
+        save_total_limit=5,
         load_best_model_at_end=True,
         use_cpu=False, # Uses CUDA or mps if available
     )
@@ -62,5 +63,5 @@ if __name__ == '__main__':
     )
 
     print("Training...")
-    trainer.train()
+    trainer.train(resume_from_checkpoint=True)
     trainer.save_model(output_dir='model')
