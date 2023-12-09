@@ -62,6 +62,7 @@ if __name__ == '__main__':
         .sample(n=750, random_state=42)
     )
     human['label'] = 0
+    human['source'] = 'CHEAT'
 
     ai = (
         pd.read_json(f'{DATA_FOLDER}/CHEAT/ieee-chatgpt-generation.jsonl', lines=True)
@@ -70,12 +71,16 @@ if __name__ == '__main__':
         .sample(n=750, random_state=42)
     )
     ai['label'] = 1
+    ai['source'] = 'CHEAT'
 
     mgt = pd.read_csv(f'{DATA_FOLDER}/MGTBench/TruthfulQA_LLMS.csv').dropna()
-    human2 = pd.DataFrame({'text': mgt['Best Answer'], 'label': 0})
-    ai2 = pd.DataFrame({'text': mgt['ChatGPT-turbo_answer'], 'label': 1})
+    mgt['source'] = 'MGTBench'
+    human2 = pd.DataFrame({'text': mgt['Best Answer'], 'label': 0, 'source': mgt['source']})
+    ai2 = pd.DataFrame({'text': mgt['ChatGPT-turbo_answer'], 'label': 1, 'source': mgt['source']})
 
     df = pd.concat([human, ai, human2, ai2]).reset_index(drop=True)
+    df['source'] = df['source'].astype('category')
+    df.to_csv(f'{DATA_FOLDER}/test_dataset.csv', index=False)
     df.info()
     df.head()
 
@@ -128,5 +133,3 @@ if __name__ == '__main__':
 
         plot_confusion_matrix(cm, classes=label2id.keys(), figsize=(8, 6), is_norm=True)
     
-
-# %%
