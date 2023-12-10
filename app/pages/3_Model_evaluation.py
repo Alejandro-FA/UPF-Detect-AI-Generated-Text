@@ -73,19 +73,26 @@ def metrics_tab(y_true: np.ndarray, y_pred: np.ndarray, y_true_other: np.ndarray
 if __name__ == '__main__':
     import pandas as pd
 
+    st.set_page_config(
+        page_title="Model evaluation",
+        page_icon="🩺",
+        layout="wide",
+        initial_sidebar_state="auto",
+    )
+
     DATA_FOLDER = 'data'
     MODEL_FOLDER = 'model'
 
     ############################ SECTION 00 ###################################
     st.sidebar.markdown(
         """Here you can check how reliable are the models at detecting AI-generated
-        texts. We also provide some information about how the test methodology.
+        texts. We also provide some information about the test methodology.
         """
     )
     st.title('Performance evaluation of classification models 🩺')
     st.write('\n')
 
-    with st.expander(label=f':{primary_color}[Evaluation method]', expanded=True):
+    with st.expander(label=f':{primary_color}[Evaluation method]', expanded=False):
         col1, col2 = st.columns(2)
 
         with col1:
@@ -157,7 +164,7 @@ if __name__ == '__main__':
             st.markdown(body)
 
     ############################ SECTION 01 ###################################
-    with st.expander(label=f':{primary_color}[Test dataset]', expanded=True):
+    with st.expander(label=f':{primary_color}[Test dataset]', expanded=False):
         df = pd.read_csv(f'{DATA_FOLDER}/test_dataset.csv')
         st.dataframe(df, use_container_width=True, column_config={
             'text': st.column_config.TextColumn(

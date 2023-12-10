@@ -38,7 +38,7 @@ def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blu
     
     # Display the confusion matrix as an image with a colormap
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
+    # plt.title(title)
     plt.colorbar()
 
     # Define tick marks and labels for the classes on the axes

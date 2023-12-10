@@ -1,25 +1,19 @@
 name: vis_analytics
 channels:
-  - nvidia
+  # - nvidia
+  - HuggingFace
   - pytorch
   - conda-forge
   - defaults
 dependencies:
-  - python=3.11
-  - altair
-  - arviz
-  - bokeh
-  - datapane
   - datasets
-  - folium
-  - lightgbm
+  - evaluate
   - matplotlib
-  - nbformat
   - numpy
   - pandas
-  - plotly
-  - plotnine
+  - python=3.11
   - pytorch
+  # - pytorch-cuda
   - scikit-learn
   - seaborn
   - shap
@@ -27,5 +21,4 @@ dependencies:
   - torchaudio
   - torchvision
   - transformers
-  - pytorch-cuda=12.1
-  - accelerate
+  - wordcloud
