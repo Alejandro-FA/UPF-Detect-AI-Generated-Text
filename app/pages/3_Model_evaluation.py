@@ -1,6 +1,7 @@
 import streamlit as st
 from utils import plot_confusion_matrix
 import numpy as np
+import pandas as pd
 from sklearn.metrics import (
     accuracy_score, 
     confusion_matrix,
@@ -70,9 +71,18 @@ def metrics_tab(y_true: np.ndarray, y_pred: np.ndarray, y_true_other: np.ndarray
         st.pyplot( plot_confusion_matrix(cm, classes=label2id.keys(), figsize=(8, 6), is_norm=True) )
 
 
-if __name__ == '__main__':
-    import pandas as pd
+@st.cache_data
+def load_data(data_folder: str) -> tuple[pd.DataFrame, list[np.ndarray]]:
+    df = pd.read_csv(f'{data_folder}/test_dataset.csv')
+    y_true_ours = np.load(f'{DATA_FOLDER}/y_true_ours.npy')
+    y_pred_ours = np.load(f'{DATA_FOLDER}/y_pred_ours.npy')
+    y_true_simpleai = np.load(f'{DATA_FOLDER}/y_true_simpleai.npy')
+    y_pred_simpleai = np.load(f'{DATA_FOLDER}/y_pred_simpleai.npy')
+    return (df, [y_true_ours, y_pred_ours, y_true_simpleai, y_pred_simpleai])
 
+
+
+if __name__ == '__main__':
     st.set_page_config(
         page_title="Model evaluation",
         page_icon="🩺",
@@ -163,8 +173,9 @@ if __name__ == '__main__':
             st.markdown(body)
 
     ############################ SECTION 01 ###################################
+    df, y = load_data(DATA_FOLDER)
+    
     with st.expander(label=f':{primary_color}[Test dataset]', expanded=False):
-        df = pd.read_csv(f'{DATA_FOLDER}/test_dataset.csv')
         st.dataframe(df, use_container_width=True, column_config={
             'text': st.column_config.TextColumn(
                 label='Text ✏️',
@@ -189,13 +200,13 @@ if __name__ == '__main__':
     st.markdown('Compare how good is each model at detecting AI-generated texts. The deltas shown are between the models.')
     tab1, tab2 = st.tabs(["Our model", "SimpleAI ChatGPT Detector"])
 
-    y_true_ours = np.load(f'{DATA_FOLDER}/y_true_ours.npy')
-    y_pred_ours = np.load(f'{DATA_FOLDER}/y_pred_ours.npy')
-    y_true_roberta = np.load(f'{DATA_FOLDER}/y_true_roberta.npy')
-    y_pred_roberta = np.load(f'{DATA_FOLDER}/y_pred_roberta.npy')
+    y_true_ours = y[0]
+    y_pred_ours = y[1]
+    y_true_simpleai = y[2]
+    y_pred_simpleai = y[3]
     with tab1:
-        metrics_tab(y_true_ours, y_pred_ours, y_true_roberta, y_pred_roberta)
+        metrics_tab(y_true_ours, y_pred_ours, y_true_simpleai, y_pred_simpleai)
 
     with tab2:
-        metrics_tab(y_true_roberta, y_pred_roberta, y_true_ours, y_pred_ours)
+        metrics_tab(y_true_simpleai, y_pred_simpleai, y_true_ours, y_pred_ours)
     

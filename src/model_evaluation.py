@@ -47,7 +47,7 @@ if __name__ == '__main__':
         {
             'classifier': classifier_roberta,
             'label2id': {"Human": 0, "ChatGPT": 1},
-            'name': 'roberta',
+            'name': 'simpleai',
         },
     ]
 

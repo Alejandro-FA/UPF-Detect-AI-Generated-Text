@@ -21,10 +21,10 @@ if __name__ == '__main__':
     import datasets
     import torch
 
-    # %% Training
+    # %% Load datasets and model
     print("CUDA available:", torch.cuda.is_available())
 
-    tokenized_datasets = datasets.load_from_disk("data/tokenized_datasets/new")
+    tokenized_datasets = datasets.load_dataset('Alejandro-FA/ma_ai_text_data', name='training')
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
@@ -38,6 +38,7 @@ if __name__ == '__main__':
         label2id=label2id
     )
 
+    # %% Configuration
     training_args = TrainingArguments(
         output_dir="model/training_checkpoints",
         learning_rate=2e-5,
@@ -56,13 +57,14 @@ if __name__ == '__main__':
         model=model,
         args=training_args,
         train_dataset=tokenized_datasets['train'],
-        eval_dataset=tokenized_datasets['test'],
+        eval_dataset=tokenized_datasets['validation'],
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
 
+    # %% Train
     print("Training...")
-    trainer.train(resume_from_checkpoint=True)
-    trainer.save_model(output_dir='model')
+    trainer.train()
+    trainer.save_model(output_dir='../model')
     # trainer.push_to_hub()

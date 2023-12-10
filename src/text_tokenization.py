@@ -52,15 +52,15 @@ if __name__ == '__main__':
     #     "train": to_dataset(X_train, y_train),
     #     "test": to_dataset(X_test, y_test)
     # })
-    df_train = pd.read_csv('data/archive/final_train.csv')
+    df_train = pd.read_csv('../data/archive/final_train.csv')
     df_train.info()
 
-    df_test = pd.read_csv('data/archive/final_test.csv')
+    df_test = pd.read_csv('../data/archive/final_test.csv')
     df_test.info()
 
     my_datasets = datasets.DatasetDict({
         "train": datasets.Dataset.from_pandas(df_train),
-        "test": datasets.Dataset.from_pandas(df_test)
+        "validation": datasets.Dataset.from_pandas(df_test)
     })
 
     # %% Tokenize dataset
@@ -71,4 +71,7 @@ if __name__ == '__main__':
     for dataset in tokenized_datasets:
         print_stats(dataset, tokenized_datasets[dataset])
 
-    tokenized_datasets.save_to_disk("data/tokenized_datasets/new")
+    # %% Save dataset
+    tokenized_datasets['train'].push_to_hub('Alejandro-FA/ma_ai_text_data', 'training', split='train')
+    tokenized_datasets['validation'].push_to_hub('Alejandro-FA/ma_ai_text_data', 'training', split='validation')
+    # tokenized_datasets.save_to_disk("data/tokenized_datasets/new")

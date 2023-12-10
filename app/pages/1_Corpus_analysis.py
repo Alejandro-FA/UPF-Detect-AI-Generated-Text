@@ -11,7 +11,7 @@ import datasets
 
 @st.cache_data
 def load_dataset():
-    return datasets.load_from_disk("data/tokenized_datasets/sampled")
+    return datasets.load_dataset('Alejandro-FA/ma_ai_text_data', name='eda_embedding_sample', split='train')
 
 @st.cache_data
 def load_data():

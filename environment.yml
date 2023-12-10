@@ -6,6 +6,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - accelerate
   - datasets
   - evaluate
   - matplotlib
@@ -18,6 +19,7 @@ dependencies:
   - seaborn
   - shap
   - spacy
+  - spacy-model-en_core_web_sm
   - streamlit
   - torchaudio
   - torchvision

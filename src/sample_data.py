@@ -55,7 +55,8 @@ if __name__ == '__main__':
     # We persist the vectors after the TSNE to improve the streamlit app performance.
     dataset = dataset.add_column("embedding_tsne", embeddings_tsne[:, 0])
     dataset = dataset.add_column("embedding_tsne_1", embeddings_tsne[:, 1])
-    dataset.save_to_disk(f"{DATA_FOLDER}/tokenized_datasets/sampled")
+    dataset.push_to_hub('Alejandro-FA/ma_ai_text_data', 'eda_embedding_sample')
+    # dataset.save_to_disk(f"{DATA_FOLDER}/tokenized_datasets/sampled")
 
     # %% VISUALIZATION
     fig, ax = plt.subplots()
