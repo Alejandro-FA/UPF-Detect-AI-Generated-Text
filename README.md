@@ -5,7 +5,7 @@ Kaggle competition page: https://www.kaggle.com/competitions/llm-detect-ai-gener
 To **replicate the development environment** simply run the following command (you can change the name of the environment from `vis_analytics` to something else).
 
 ```bash
-conda env create --name vis_analytics --file environment.yml
+conda env create --name vis_analytics --file env.yml
 ```
 
 > If yor system does support CUDA, you should first uncomment the `pytorch-cuda` requirement from the `.yml` file and the `nvidia` channel.
