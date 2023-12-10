@@ -4,7 +4,7 @@ evaluate
 matplotlib
 numpy
 pandas
-pytorch
+torch
 scikit-learn
 seaborn
 shap
