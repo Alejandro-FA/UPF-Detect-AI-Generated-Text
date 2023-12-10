@@ -61,7 +61,5 @@ def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blu
 
     # Ensure the plot layout is tight
     plt.tight_layout()
-    # Display the plot
-    plt.show()
 
     return fig

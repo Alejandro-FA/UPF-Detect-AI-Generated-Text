@@ -57,6 +57,12 @@ def print_description(toggled_description, nt_description, is_toggled):
         st.write(nt_description)
 
 if __name__ == '__main__':
+    st.set_page_config(
+        page_title="Corpus Analysis",
+        page_icon="🔎",
+        layout="centered",
+        initial_sidebar_state="auto",
+    )
 
     st.header("Corpus Analysis 🔎")
     df_outliers, df_without_outliers = load_data()

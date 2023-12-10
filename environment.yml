@@ -17,6 +17,7 @@ dependencies:
   - scikit-learn
   - seaborn
   - shap
+  - spacy
   - streamlit
   - torchaudio
   - torchvision
