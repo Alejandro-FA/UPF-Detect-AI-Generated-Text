@@ -5,10 +5,10 @@ Kaggle competition page: https://www.kaggle.com/competitions/llm-detect-ai-gener
 To **replicate the development environment** simply run the following command (you can change the name of the environment from `vis_analytics` to something else).
 
 ```bash
-conda env create --name vis_analytics --file environment.yml
+conda env create --name vis_analytics --file app/environment.yml
 ```
 
-> If yor system does not support CUDA, you should first remove the `pytorch-cuda` requirement from the `.yml` file, otherwise the environment creation will fail.
+> If yor system does support CUDA, you should first uncomment the `pytorch-cuda` requirement from the `.yml` file and the `nvidia` channel.
 
 
 ## Project description and expected benefits
@@ -47,6 +47,4 @@ We will build a Streamlit webapp to present the methodologies used, the analysis
 
 - [Datasets used in papers](https://github.com/NLP2CT/LLM-generated-Text-Detection#datasets)
 
-- [Validation dataset used](https://huggingface.co/datasets/Hello-SimpleAI/HC3)
-
-- [Similar model](https://huggingface.co/spaces/Hello-SimpleAI/chatgpt-detector-qa)
+- [SimpleAI model](https://huggingface.co/spaces/Hello-SimpleAI/chatgpt-detector-qa)
