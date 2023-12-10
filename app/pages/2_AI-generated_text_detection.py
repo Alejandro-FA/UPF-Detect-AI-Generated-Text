@@ -27,7 +27,7 @@ def load_models() -> dict[str, Model]:
     device = get_torch_device(debug=True)
     our_model = pipeline(
         task='text-classification',
-        model=os.path.abspath('model'),
+        model='Alejandro-FA/ma_ai_text',
         device=device,
         top_k=1,
         truncation=True,
@@ -131,8 +131,8 @@ if __name__ == '__main__':
         """
         You can make a prediction with either our own model or with the model
         developed by [SimpleAI](https://github.com/Hello-SimpleAI/chatgpt-comparison-detection)¹. If you want more information about our model, we recommend to check
-        the [training dataset analysis page](/Corpus_analysis)
-        and the [model performance page](/Model_evaluation).
+        the [training dataset analysis](/Corpus_analysis) page
+        and the [model performance](/Model_evaluation) page.
         """
     )
     st.caption(
@@ -182,7 +182,7 @@ if __name__ == '__main__':
         if prediction[0][0]['label'] == labels[0]: prob = 1 - prob
 
         color = 'red' if prob > 0.5 else 'blue'
-        prob_str = str(round(prob * 100, 1)) + ' %'
+        prob_str = str(round(prob * 100, 1)) + '%'
 
         st.info(
             f"""

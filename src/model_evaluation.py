@@ -18,13 +18,11 @@ if __name__ == '__main__':
     )
 
     DATA_FOLDER = '../data'
-    MODEL_FOLDER = '../model'
 
     # %% Load AI-generatet text classification models
-    model_path = os.path.abspath(MODEL_FOLDER)
     classifier_ours = pipeline(
         task='text-classification',
-        model=model_path,
+        model='Alejandro-FA/ma_ai_text',
         device=get_torch_device(debug=True),
         truncation=True,
         padding=True,

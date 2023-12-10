@@ -65,3 +65,4 @@ if __name__ == '__main__':
     print("Training...")
     trainer.train(resume_from_checkpoint=True)
     trainer.save_model(output_dir='model')
+    # trainer.push_to_hub()

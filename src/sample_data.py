@@ -31,12 +31,10 @@ if __name__ == '__main__':
 
     # %% EMBEDDING MODEL LOADING
     DATA_FOLDER = '../data'
-    MODEL_FOLDER = '../model'
 
-    model_path = os.path.abspath(MODEL_FOLDER)
     embedder = pipeline(
         'feature-extraction',
-        model=model_path,
+        model='Alejandro-FA/ma_ai_text',
         device=get_torch_device(debug=True),
         truncation=True,
         padding=True,

@@ -81,7 +81,6 @@ if __name__ == '__main__':
     )
 
     DATA_FOLDER = 'data'
-    MODEL_FOLDER = 'model'
 
     ############################ SECTION 00 ###################################
     st.sidebar.markdown(
