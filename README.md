@@ -7,9 +7,9 @@ conda env create --name vis_analytics --file environment.yml
 conda activate vis_analytics
 ```
 
-> If yor system does support CUDA, you should first uncomment the `pytorch-cuda` requirement from the `.yml` file and the `nvidia` channel.
+> If yor system does support CUDA, it is recommended to uncomment the `pytorch-cuda` requirement from the `.yml` file and to uncomment the `nvidia` channel.
 
-Alternatively, we also provide a `pip` `requirements.txt` file:
+Alternatively, we also provide a `pip` `requirements.txt` file. Please take into account that the project has been developed with `python 3.11`. We have not tested if the code works with other versions of `python`.
 
 ```bash
 python3 -m venv .venv
@@ -22,6 +22,10 @@ Then you can simply run the [streamlit](https://streamlit.io/) app as follows:
 ```bash
 streamlit run app/Welcome.py
 ```
+
+The first execution of the app will download our [pre-trained model](https://huggingface.co/Alejandro-FA/ma_ai_text), the AI-generated text detection model from [SimpleAI](https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta) and some [datasets](https://huggingface.co/datasets/Alejandro-FA/ma_ai_text_data) that we use. Depending on your internet connection this process could take several minutes, please be patient.
+
+These files are too large to be uploaded to GitHub.
 
 
 ## Project description and expected benefits

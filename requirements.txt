@@ -14,4 +14,5 @@ streamlit
 torchaudio
 torchvision
 transformers
+watchdog
 wordcloud
