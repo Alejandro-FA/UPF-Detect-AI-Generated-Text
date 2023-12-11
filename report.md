@@ -26,7 +26,7 @@ As a general conclusion, we can observe that a predictive model based on these t
 
 ### Analysis of a sample of the corpus
 
-The high computation requirements along with the length of the texts resulted into a very time consuming process to do the plots. This is why we took a 10.000 sample from our training dataset.
+The high computation requirements along with the length of the texts resulted into a very time consuming process to do the plots and the posterior analysis. This is why we took a 10.000 sample from our training dataset to get the following insights.
 
 First we analyzed which were the more frequent words in the sample. The most repeated terms were student, school, people, help..., which gave us a hint that most of the essays were related whith academic topics. Then, we applied Named Entity Recognition (NER)[^3] the most frequent type of terms are organizations, then person names and then cardinal numbers.
 
