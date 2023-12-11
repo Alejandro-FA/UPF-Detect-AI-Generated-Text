@@ -38,11 +38,15 @@ To develop the model we followed a text classification guide from Huggingface[^5
 
 ## Model Results 
 
-In order to analyze the performance of our model, we built our semi-custom test dataset from a couple of corpuses[^6][^7]. We used the classical evaluation metrics.
+When we were testing our model, we realized from the beginning that its performance was not the desirable one. It ended the training with an accuracy higher than 99% (in a test split of the training dataset mentioned in previous sections). This was a clear symptom that the training dataset is not challenging enough. 
 
-When we were testing our model, we realized from the beginning that its performance was not the desirable one. Therefore, we decided to use a state of the art model[^8] to compare it with.
+Therefore, we decided to also use a state of the art model[^8] to compare it with. In order to analyze the performance of our model properly, we built our semi-custom test dataset from a couple of corpuses[^6][^7]. We used the classical evaluation metrics.
 
-Our model has a clear bias towards predicting that texts are AI generated with a `99.5%` of recall. It has an overall acccuracy of the `51.2%` which quite low compared to the other model.
+With this new test dataset we got much more realistic results. Our model has a clear bias towards predicting that texts are AI generated with a `99.5%` of recall. It has an overall acccuracy of the `51.2%`, which is very low.
+
+## Explainable AI plots interpretation
+
+In the streamlit app we also use SHAP plots to explain inference results. However, we believe that the results provided by SHAP are not very useful. The plot highlights tokens of the text that have been relevant for the prediction, but more often than not it only highlights single words or even punctuation characters. We believe that this is not very useful for a professor looking for plagiarism, for example, and it would be better to highlight suspicious sentences instead of words. 
 
 
 [^1]: https://www.kaggle.com/datasets/jdragonxherrera/augmented-data-for-llm-detect-ai-generated-text/data?select=final_train.csv
